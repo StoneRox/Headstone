@@ -1,0 +1,8 @@
+<div>
+    <ul>
+        <li *ngIf="currentUser"><a routerLink="/">Home</a></li>
+        <li *ngIf="currentUser">Welcome, {{currentUser}} <button class="btn" (click)="logout()">Logout</button></li>
+        <li *ngIf="!currentUser"><a routerLink="/login">Login</a></li>
+        <li *ngIf="!currentUser"><a routerLink="/register">Register</a></li>
+    </ul>
+</div>

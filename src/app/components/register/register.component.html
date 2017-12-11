@@ -1,0 +1,20 @@
+Form values: {{registerForm.value | json}} -- Dev Mode (TODO: Remove before release)
+<div class="container">
+  <div class="alert alert-success" *ngIf="messageOnSuccess">{{messageOnSuccess}}</div>
+  <h1>Register</h1>
+  <form (ngSubmit)="save()" [formGroup]="registerForm" >
+    <div *ngFor="let controlName of controlsNames" class="form-group" [ngClass]="{'has-error': error.get(controlName)}">
+      <label for="{{controlName}}">{{controlName | splitByCapital | capitalize}}</label>
+      <input type="{{controlName==='loginAfterRegister'?'checkbox':['password','repeatPassword'].includes(controlName)?'password':'text'}}"
+             [class.form-control]="controlName!=='loginAfterRegister'" id="{{controlName}}"
+             formControlName="{{controlName}}"
+             (click)="controlName==='loginAfterRegister'?checkBoxChangeValue($event):undefined">
+      <div class="alert alert-danger absolute" *ngIf="error.get(controlName)">
+        {{error.get(controlName) | splitByCapital:true | capitalize}}
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-success">Sign in</button>
+    </div>
+  </form>
+</div>
