@@ -8,7 +8,7 @@ let Components = {
     RegisterComponent,
     NotfoundComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
 };
 let componentsArray: any[] = Object.values(Components);
 export {Components}

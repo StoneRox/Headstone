@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms";
+import {FormGroup, FormBuilder, AbstractControl} from "@angular/forms";
 import 'rxjs/add/operator/debounceTime';
 import InputErrorMessagesModel from "../../models/input-error-messages.model";
 import {generateValidators, trimFormInputs} from "../../utils/form-helper";
@@ -66,7 +66,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
       let autologin = this.registerForm.value.loginAfterRegister;
       this.sub$.push(this.auth.register(reqBody).subscribe((res) => {
           if (res['error']) {
-            this.error['username'] = res['error']
+            this.error['username'] = res['error'];
+              setTimeout(()=>{
+                  delete this.error['username'];
+              },3000)
           }
           else {
             this.messageOnSuccess = 'Register success';

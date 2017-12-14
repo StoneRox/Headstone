@@ -1,0 +1,21 @@
+<div class="{{single?'col-md-6 col-md-offset-3':'col-md-12'}}">
+    <h1 class="text-center">{{article?.title}}</h1>
+    <img class="width-100" *ngIf="article && single && article?.imageUrl" src="{{article?.imageUrl}}" alt="">
+    <div>{{single?article?.content:article?.content | slice:0:300}}
+        <a *ngIf="!single" routerLink="/article/{{article?._id}}">Read More</a>
+    </div>
+    <div *ngIf="article && single">
+        Tags:
+        <a *ngFor="let tag of article?.tags" routerLink="/tag/{{tag}}">{{tag}}</a>
+    </div>
+    <div *ngIf="article?.author">
+        Author: <a routerLink="/user/{{article.author}}">{{article?.author}}</a>
+    </div>
+    <div *ngIf="single">
+        Date published: {{article?.date | date: 'dd/MM/yyyy'}}
+    </div>
+    <div *ngIf="article?.allowControl && single">
+        <button (click)="removeArticle()">Delete</button>
+        <button routerLink="/edit/article/{{article?._id}}">Edit</button>
+    </div>
+</div>

@@ -9,7 +9,6 @@ export class AuthService {
     constructor(private http: HttpClient) {
     }
     login(payload){
-        console.log(payload);
         return this.http.post(baseUrl+LOGIN,payload)
     }
     register(payload){

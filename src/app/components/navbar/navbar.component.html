@@ -1,8 +1,15 @@
-<div>
-    <ul>
-        <li *ngIf="currentUser"><a routerLink="/">Home</a></li>
-        <li *ngIf="currentUser">Welcome, {{currentUser}} <button class="btn" (click)="logout()">Logout</button></li>
-        <li *ngIf="!currentUser"><a routerLink="/login">Login</a></li>
-        <li *ngIf="!currentUser"><a routerLink="/register">Register</a></li>
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/">Home</a>
+    </div>
+    <ul *ngIf="currentUser()['username']" class="nav navbar-nav">
+        <li><a routerLink="/users">Users</a></li>
+        <li><a routerLink="/create/article">Create Article</a></li>
+        <li><a routerLink="/user/{{currentUser()['username']}}">{{currentUser()['username']}}</a></li>
+        <li><a routerLink="/login" (click)="logout()">Logout</a></li>
+    </ul>
+    <ul *ngIf="!currentUser()['username']" class="nav navbar-nav">
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Register</a></li>
     </ul>
 </div>

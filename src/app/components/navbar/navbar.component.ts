@@ -9,19 +9,19 @@ import {Router} from "@angular/router";
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    currentUser:string;
+
+    currentUser:Function = this.user.current;
     constructor(private user: UserService,private auth: AuthService, private router:Router) {
     }
 
     ngOnInit() {
-        this.currentUser = this.user.current()['username']
+
     }
 
     logout() {
         this.auth.logout().subscribe(res=>{
             if(!res['error']){
                 delete localStorage.user;
-                this.currentUser = null;
                 this.router.navigate(['/login'])
             }
         })

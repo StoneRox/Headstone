@@ -1,0 +1,9 @@
+div:first-of-type{
+    margin-bottom: 20px;
+}
+img{
+    display: none;
+}
+.show{
+    display: initial;
+}

@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     };
     errorMessages: Object = InputErrorMessagesModel;
     controlsNames: string[];
-    messageOnSuccess: string;
     sub$;
 
     constructor(private fb: FormBuilder, private auth: AuthService,private user:UserService,private router:Router) {
@@ -53,13 +52,14 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.sub$.push(this.auth.login(reqBody).subscribe((res) => {
                     if (res['error']) {
                         this.error['username'] = "Invalid username or password";
-                        this.error['password'] = "Invalid username or password"
+                        this.error['password'] = "Invalid username or password";
+                        setTimeout(()=>{
+                            delete this.error['username'];
+                            delete this.error['password'];
+
+                        },3000)
                     }
                     else {
-                        this.messageOnSuccess = 'Login success';
-                        setTimeout(() => {
-                            this.messageOnSuccess = '';
-                        }, 3000);
                         this.loginForm.reset();
                         this.user.remember(res);
                         this.router.navigate(['/'])

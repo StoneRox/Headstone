@@ -1,0 +1,27 @@
+<div class="container text-center">
+    <div class="alert alert-success" *ngIf="messageOnSuccess">{{messageOnSuccess}}</div>
+    <form (ngSubmit)="save()" [formGroup]="articleForm" class="col-md-6 col-md-offset-3">
+        <div  *ngFor="let controlName of controlsNames" class="form-group " [ngClass]="{'has-error': error.get(controlName)}">
+            <label for="{{controlName}}">{{controlName | splitByCapital | capitalize}}</label>
+            <input *ngIf="!['content','category'].includes(controlName)" type="text" class="form-control"
+                   id="{{controlName}}"
+                   formControlName="{{controlName}}"
+                   >
+            <button type="button" *ngIf="controlName==='imageUrl'" (click)="showHideImage($event)">{{showImage?'Hide':'Show'}} Image</button>
+            <img [class.show]="showImage" *ngIf="articleForm?.value?.imageUrl&&controlName==='imageUrl'" class="width-100" (error)="imageError()" (load)="imageError('clear')" src="{{articleForm.value[controlName]}}" alt="">
+            <textarea *ngIf="controlName === 'content'" type="text" class="form-control width-100"
+                   formControlName="{{controlName}}"
+            ></textarea>
+            <select class="form-control text-centered" *ngIf="controlName==='category'" name="{{controlName}}" id="{{controlName}}" formControlName="{{controlName}}">
+                <option *ngFor="let categ of categories;let i = index" selected="{{category===categ||i===0?'selected':''}}" value="{{categ}}">{{categ}}
+                </option>
+            </select>
+            <div class="alert alert-danger absolute" *ngIf="error.get(controlName)">
+                {{error.get(controlName) | splitByCapital:true | capitalize}}
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">{{edit?'Edit':'Post'}} article</button>
+        </div>
+    </form>
+</div>
