@@ -1,15 +1,25 @@
-<div class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" routerLink="/">Home</a>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/">Home</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav" *ngIf="currentUser()['username']">
+                <li><a routerLink="/users">Users</a></li>
+                <li><a routerLink="/create/article">Create Article</a></li>
+                <li *ngIf="currentUser()['roles']"><a routerLink="/create/category">Create Category</a></li>
+                <li><a routerLink="/user/{{currentUser()['username']}}">{{currentUser()['username']}}</a></li>
+                <li><a routerLink="/login" (click)="logout()">Logout</a></li>
+            </ul>
+            <ul *ngIf="!currentUser()['username']" class="nav navbar-nav navbar-right">
+                <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                <li><a routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+            </ul>
+        </div>
     </div>
-    <ul *ngIf="currentUser()['username']" class="nav navbar-nav">
-        <li><a routerLink="/users">Users</a></li>
-        <li><a routerLink="/create/article">Create Article</a></li>
-        <li><a routerLink="/user/{{currentUser()['username']}}">{{currentUser()['username']}}</a></li>
-        <li><a routerLink="/login" (click)="logout()">Logout</a></li>
-    </ul>
-    <ul *ngIf="!currentUser()['username']" class="nav navbar-nav">
-        <li><a routerLink="/login">Login</a></li>
-        <li><a routerLink="/register">Register</a></li>
-    </ul>
-</div>
+</nav>

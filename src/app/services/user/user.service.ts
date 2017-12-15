@@ -25,4 +25,7 @@ export class UserService {
         let query = Object.keys(queryObj).map(key=>`${key}=${queryObj[key]}`);
         return this.http.get(baseUrl+`/${modPath}users?${query.join('&')}`)
     }
+    edit(id,payload){
+        return this.http.post(baseUrl+'/edit-user/'+id,payload)
+    }
 }

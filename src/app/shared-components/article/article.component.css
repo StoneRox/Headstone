@@ -1,3 +1,6 @@
 a{
     margin-right: 5px;
 }
+div:first-of-type{
+    margin-bottom: 20px;
+}

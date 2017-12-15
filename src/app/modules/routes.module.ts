@@ -16,6 +16,10 @@ const guardedPaths: any[] = [
     {path: 'user/:username', loadChildren: lazyChild('userDetails',['SharedArticleModule','SharedUserModule']), pathMatch: 'full'},
     {path: 'create/article', loadChildren: lazyChild('createArticle','SharedArticleFormModule'), pathMatch: 'full'},
     {path: 'edit/article/:id', loadChildren: lazyChild('editArticle','SharedArticleFormModule'), pathMatch: 'full'},
+    {path: 'me', loadChildren: lazyChild('userDetails',['SharedArticleModule','SharedUserModule']), pathMatch: 'full'},
+
+    {path: 'create/category',canActivate:[Guards.AdminGuard],canLoad:[Guards.AdminGuard], loadChildren: lazyChild('categoryControl',['SharedCategoryFormModule']), pathMatch: 'full'},
+    {path: 'edit/category/:name',canActivate:[Guards.AdminGuard],canLoad:[Guards.AdminGuard], loadChildren: lazyChild('categoryControl',['SharedCategoryFormModule']), pathMatch: 'full'},
 
 ]
     .map(p => {
@@ -24,6 +28,12 @@ const guardedPaths: any[] = [
         }
         else {
             p['canActivate'] = p['canActivate'].concat(commonGuards);
+        }
+        if (!p['canLoad']) {
+            p['canLoad'] = commonGuards;
+        }
+        else {
+            p['canLoad'] = p['canLoad'].concat(commonGuards);
         }
         return p;
     });

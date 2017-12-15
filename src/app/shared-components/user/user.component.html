@@ -1,6 +1,28 @@
 <div *ngIf="user">
-    <img src="{{user.attr?.avatar}}" alt="">
     <div>
-        <h3>{{user.username}}</h3>
+        <div class="col-md-6 clearfix">
+            <img (error)="imageError()" (load)="imageError('clear')" class="img-thumbnail avatar pull-right" src="{{newAvatarUrl||user.attr?.avatar||'../../assets/avatar.png'}}" alt="">
+        </div>
+        <div  class="col-md-6">
+            <h3>{{user.username}}</h3>
+        </div>
+        <div *ngIf="allowControl" class="col-md-12">
+            <div class="col-md-6 clearfix">
+                <button (click)="editAvatar()" class="btn btn-primary btn-xs pull-right my">{{avatarInEdit?'Cancel':'Change avatar'}}</button>
+            </div>
+        </div>
+        <div *ngIf="allowControl&&avatarInEdit" class="col-md-12">
+            <form (submit)="save($event)" class="col-md-6 col-md-offset-3">
+                <div class="form-group col-md-7">
+                    <input class="form-control" placeholder="Link to image url" (input)="inputToProp($event)" name="avatar" id="avatar" type="text">
+                    <div class="alert alert-danger absolute" *ngIf="error">
+                        {{error}}
+                    </div>
+                </div>
+                <div *ngIf="!error" class="form-group">
+                    <input class="btn btn-primary col-md-4" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
     </div>
 </div>

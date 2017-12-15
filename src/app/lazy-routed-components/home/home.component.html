@@ -8,16 +8,17 @@
                 <input class="btn btn-primary col-md-4" type="submit" value="Search">
             </div>
         </form>
+    </div>
+    <div class="col-md-12 ">
         <div *ngIf="articles">
-            <div>Found {{articles.length}} articles</div>
+            <div class="text-center">Found {{articles.length}} articles</div>
             <app-articles [articles]="articles"></app-articles>
         </div>
         <div *ngIf="!articles?.length" class="col-md-12">
-            <h1 class="text-center">Categories</h1>
+            <h1 >Categories</h1>
             <ul>
                 <li *ngFor="let category of categories"><a routerLink="/category/{{category}}">{{category}}</a></li>
             </ul>
         </div>
-
     </div>
 </div>

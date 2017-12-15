@@ -27,6 +27,8 @@ class InputErrorMessagesModel {
                 return `The ${propName} should contain only numbers and latin letters`;
             case "^[a-zA-Z0-9. ]+$":
                 return `The ${propName} should contain only numbers, latin letters, "." and space`;
+            case "^[a-zA-Z0-9. !?-]+$":
+                return `The ${propName} should contain only numbers, latin letters, ".","-","!","?" and space`;
             case "^[a-zA-Z ]+$":
                 return `The ${propName} should contain only latin letters and space`;
             default:

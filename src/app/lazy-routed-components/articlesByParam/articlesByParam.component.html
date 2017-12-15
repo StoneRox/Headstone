@@ -1,3 +1,6 @@
 <div class="container">
+    <div class="text-center col-md-12">
+    <h1 *ngIf="category" >Category: {{category}} <button *ngIf="currentUser()?.roles" routerLink="{{'/edit/category/'+category}}" class="btn btn-primary btn-xs">Edit</button></h1>
+    </div>
     <app-articles [articles]="articles"></app-articles>
 </div>

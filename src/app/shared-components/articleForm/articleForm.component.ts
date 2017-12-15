@@ -113,9 +113,9 @@ export class ArticleFormComponent implements OnInit, OnDestroy,OnChanges {
         }));
         this.articleForm = this.fb.group({
             category:  ['', generateValidators(true)],
-            title: ['', generateValidators(true, '[a-zA-Z0-9. ]+', 4, 60)],
+            title: ['', generateValidators(true, '[a-zA-Z0-9. !?-]+', 4, 60)],
             imageUrl: ['', generateValidators(false, '', 0, 200)],
-            content: ['', generateValidators(true, '', 5, 2000)],
+            content: ['', generateValidators(true, '', 5, 5000)],
             tags:['']
         });
         this.controlsNames = Object.keys(this.articleForm.controls);

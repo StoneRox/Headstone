@@ -8,7 +8,7 @@
                    formControlName="{{controlName}}"
                    >
             <button type="button" *ngIf="controlName==='imageUrl'" (click)="showHideImage($event)">{{showImage?'Hide':'Show'}} Image</button>
-            <img [class.show]="showImage" *ngIf="articleForm?.value?.imageUrl&&controlName==='imageUrl'" class="width-100" (error)="imageError()" (load)="imageError('clear')" src="{{articleForm.value[controlName]}}" alt="">
+            <img [class.show]="showImage" *ngIf="articleForm?.value?.imageUrl&&controlName==='imageUrl'" class="img-responsive" src="{{articleForm.value[controlName]}}" alt="">
             <textarea *ngIf="controlName === 'content'" type="text" class="form-control width-100"
                    formControlName="{{controlName}}"
             ></textarea>

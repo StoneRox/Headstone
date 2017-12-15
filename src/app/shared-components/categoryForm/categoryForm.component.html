@@ -1,0 +1,15 @@
+<form (submit)="save($event)" class="col-md-12">
+    <div class="form-group col-md-7">
+        <input class="form-control" placeholder="Category name" (input)="inputToProp($event)" name="category" id="category" type="text" value="{{category}}">
+        <div class="alert alert-danger absolute" *ngIf="error">
+            {{error}}
+        </div>
+    </div>
+
+    <div *ngIf="category && !error" >
+        <input class="btn btn-primary mx col-md-2 align-top" type="submit" value="{{edit?'Edit':'Create'}}">
+    </div>
+    <div *ngIf="edit">
+        <input class="btn btn-danger mx col-md-2 align-top" type="button" (click)="remove()" value="Delete">
+    </div>
+</form>

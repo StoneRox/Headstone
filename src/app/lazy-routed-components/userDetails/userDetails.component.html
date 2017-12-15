@@ -1,13 +1,10 @@
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
-        <app-user [user]="user"></app-user>
+    <div class="col-md-12">
+        <app-user [user]="user" [allowControl]="allowControl"></app-user>
         <div *ngIf="articles">
             <span>Published articles: {{articles?.length}}</span>
-            <div *ngFor="let article of articles" >
+            <div class="col-md-6 col-md-offset-3" *ngFor="let article of articles" >
                 <app-article [article]="article"></app-article>
-                <div class="col-md-12 text-center">
-                    <a routerLink="/article/{{article._id}}">Read More</a>
-                </div>
             </div>
         </div>
     </div>
