@@ -12,7 +12,7 @@ const guardedPaths: any[] = [
     {path: 'category/:category', loadChildren: lazyChild('articlesByParam','SharedArticlesModule'), pathMatch: 'full'},
     {path: 'article/:id', loadChildren: lazyChild('articleDetails','SharedArticleModule'), pathMatch: 'full'},
     {path: 'tag/:tag', loadChildren: lazyChild('articlesByParam','SharedArticlesModule'), pathMatch: 'full'},
-    {path: 'users', loadChildren: 'app/modules/lazy-loading/users.module#UsersModule', pathMatch: 'full'},
+    {path: 'users', loadChildren: lazyChild('users'), pathMatch: 'full'},
     {path: 'user/:username', loadChildren: lazyChild('userDetails',['SharedArticleModule','SharedUserModule']), pathMatch: 'full'},
     {path: 'create/article', loadChildren: lazyChild('createArticle','SharedArticleFormModule'), pathMatch: 'full'},
     {path: 'edit/article/:id', loadChildren: lazyChild('editArticle','SharedArticleFormModule'), pathMatch: 'full'},

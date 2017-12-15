@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://blog-headstone.herokuapp.com';
+    //'http://localhost:3000';
 const LOGIN = '/login';
 const REGISTER = '/register';
 const LOGOUT = '/logout';
